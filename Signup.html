@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create your account | Lumen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0c2a33;
+    --teal-900: #0a3a40;
+    --teal-700: #0f766e;
+    --teal-600: #138a80;
+    --mint: #e4f3f0;
+    --line: #d9e2e6;
+    --muted: #5b6e76;
+    --bg: #f5f7f8;
+    --white: #ffffff;
+    --danger: #c0392b;
+    --ok: #1a8a5a;
+    --radius: 10px;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body { background: var(--bg); color: var(--ink); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+  .page { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); min-height: 100vh; }
+
+  /* ---------- Left brand panel ---------- */
+  .brand {
+    background: linear-gradient(160deg, var(--teal-900) 0%, var(--teal-700) 100%);
+    color: #fff; padding: 48px 56px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; text-decoration: none; color: inherit; }
+  .logo-mark { width: 34px; height: 34px; border-radius: 9px; background: #fff; display: grid; place-items: center; }
+  .logo-mark svg { width: 20px; height: 20px; }
+  .brand h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.03em; margin: 0 0 18px; font-weight: 800; max-width: 16ch; }
+  .brand p.lead { color: rgba(255,255,255,.8); margin: 0 0 32px; max-width: 44ch; font-size: 1.02rem; }
+  .perks { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  .perks li { display: flex; gap: 14px; align-items: flex-start; font-size: .97rem; }
+  .perks .tick { flex: none; width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.16); display: grid; place-items: center; margin-top: 1px; }
+  .perks .tick svg { width: 13px; height: 13px; }
+  .perks strong { display: block; font-weight: 700; }
+  .perks span { color: rgba(255,255,255,.72); font-size: .9rem; }
+  .quote { border-top: 1px solid rgba(255,255,255,.2); padding-top: 24px; font-size: .95rem; color: rgba(255,255,255,.88); max-width: 46ch; }
+  .quote cite { display: block; margin-top: 10px; font-style: normal; font-size: .85rem; color: rgba(255,255,255,.65); }
+
+  /* ---------- Right form panel ---------- */
+  .panel { display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+  .card { width: 100%; max-width: 440px; }
+  .card h1 { font-size: 1.85rem; letter-spacing: -0.03em; margin: 0 0 6px; font-weight: 800; }
+  .card .sub { color: var(--muted); margin: 0 0 28px; }
+  .card .sub a, .switch a, .hint a, .terms a { color: var(--teal-700); font-weight: 600; text-decoration: none; }
+  .card a:hover { text-decoration: underline; }
+
+  .social { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .btn-social {
+    display: flex; align-items: center; justify-content: center; gap: 10px; height: 46px;
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    font: inherit; font-weight: 600; font-size: .92rem; color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s;
+  }
+  .btn-social:hover { border-color: #b9c8ce; background: #fafcfc; }
+  .btn-social svg { width: 18px; height: 18px; }
+
+  .divider { display: flex; align-items: center; gap: 14px; color: var(--muted); font-size: .85rem; margin: 24px 0; }
+  .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field { margin-bottom: 16px; }
+  label { display: block; font-weight: 600; font-size: .88rem; margin-bottom: 6px; }
+  .control { position: relative; }
+  input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%; height: 46px; padding: 0 14px; font: inherit; font-size: .95rem; color: var(--ink);
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color .15s, box-shadow .15s;
+  }
+  input::placeholder { color: #98a8ae; }
+  input:hover { border-color: #b9c8ce; }
+  input:focus { outline: none; border-color: var(--teal-600); box-shadow: 0 0 0 4px rgba(19,138,128,.16); }
+  .field.invalid input { border-color: var(--danger); }
+  .field.invalid input:focus { box-shadow: 0 0 0 4px rgba(192,57,43,.14); }
+  .error { display: none; color: var(--danger); font-size: .83rem; margin-top: 6px; }
+  .field.invalid .error { display: block; }
+
+  .toggle { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: none; border: 0; width: 36px; height: 36px; border-radius: 8px; cursor: pointer; color: var(--muted); display: grid; place-items: center; }
+  .toggle:hover { background: var(--bg); color: var(--ink); }
+  .toggle svg { width: 19px; height: 19px; }
+  #password { padding-right: 48px; }
+
+  .meter { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 10px; }
+  .meter i { height: 4px; border-radius: 4px; background: var(--line); transition: background .2s; }
+  .meter-text { font-size: .82rem; color: var(--muted); margin-top: 6px; min-height: 1.2em; }
+
+  .check { display: flex; gap: 10px; align-items: flex-start; margin: 20px 0 22px; }
+  .check input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--teal-700); flex: none; }
+  .terms { font-size: .88rem; color: var(--muted); }
+  .check.invalid .terms { color: var(--danger); }
+
+  .btn-primary {
+    width: 100%; height: 50px; border: 0; border-radius: var(--radius); background: var(--teal-700); color: #fff;
+    font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background .15s, transform .05s;
+  }
+  .btn-primary:hover { background: var(--teal-600); }
+  .btn-primary:active { transform: translateY(1px); }
+  .btn-primary:disabled { opacity: .7; cursor: progress; }
+
+  .switch { text-align: center; color: var(--muted); font-size: .92rem; margin-top: 24px; }
+
+  .success { display: none; text-align: center; padding: 24px 0; }
+  .success.show { display: block; }
+  .success .badge { width: 64px; height: 64px; border-radius: 50%; background: var(--mint); color: var(--ok); display: grid; place-items: center; margin: 0 auto 20px; }
+  .success .badge svg { width: 30px; height: 30px; }
+  .success h2 { font-size: 1.5rem; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .success p { color: var(--muted); margin: 0; }
+
+  :focus-visible { outline: 3px solid rgba(19,138,128,.45); outline-offset: 2px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 960px) {
+    .page { grid-template-columns: 1fr; }
+    .brand { padding: 28px 24px; gap: 0; }
+    .brand h2, .brand p.lead, .perks, .quote { display: none; }
+    .panel { padding: 32px 20px 48px; align-items: flex-start; }
+  }
+  @media (max-width: 480px) {
+    .row, .social { grid-template-columns: 1fr; }
+    .card h1 { font-size: 1.6rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <aside class="brand">
+    <a class="logo" href="#">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18 12 5l8 13H4Z"/></svg>
+      </span>
+      Lumen
+    </a>
+
+    <div>
+      <h2>Plan work your whole team can follow.</h2>
+      <p class="lead">Lumen keeps projects, deadlines and files in one workspace, so nobody has to ask where things stand.</p>
+      <ul class="perks">
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><div><strong>Free for up to 5 people</strong><span>No card needed to get started.</span></div></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><div><strong>Set up in minutes</strong><span>Import tasks from a spreadsheet or start fresh.</span></div></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><div><strong>Your data stays yours</strong><span>Export everything whenever you like.</span></div></li>
+      </ul>
+    </div>
+
+    <blockquote class="quote" style="margin:0">
+      “We replaced three tools with Lumen and stopped losing track of deadlines.”
+      <cite>Amelia Hart, Operations Lead</cite>
+    </blockquote>
+  </aside>
+
+  <main class="panel">
+    <div class="card">
+
+      <div id="formView">
+        <h1>Create your account</h1>
+        <p class="sub">Already have one? <a href="#">Log in</a></p>
+
+        <div class="social">
+          <button type="button" class="btn-social">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.7v3h3.9c2.3-2.1 3.5-5.2 3.5-8.9Z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24Z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1Z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1c.9-2.8 3.6-4.9 6.7-4.9Z"/></svg>
+            Google
+          </button>
+          <button type="button" class="btn-social">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.100.8 2.200v3.300c0 .3.2.7.8.6A11.500 11.500 0 0 0 12 .5Z"/></svg>
+            GitHub
+          </button>
+        </div>
+
+        <div class="divider">or sign up with email</div>
+
+        <form id="signupForm" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="first">First name</label>
+              <input type="text" id="first" name="first" placeholder="Amelia" autocomplete="given-name">
+              <div class="error">Enter your first name.</div>
+            </div>
+            <div class="field">
+              <label for="last">Last name</label>
+              <input type="text" id="last" name="last" placeholder="Hart" autocomplete="family-name">
+              <div class="error">Enter your last name.</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Work email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email">
+            <div class="error">Enter a valid email address.</div>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="control">
+              <input type="password" id="password" name="password" placeholder="At least 8 characters" autocomplete="new-password">
+              <button type="button" class="toggle" id="toggle" aria-label="Show password">
+                <svg id="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="meter-text" id="meterText" aria-live="polite">Use 8 or more characters with letters and numbers.</div>
+            <div class="error">Password must be at least 8 characters.</div>
+          </div>
+
+          <div class="check" id="termsWrap">
+            <input type="checkbox" id="terms">
+            <label for="terms" class="terms" style="font-weight:400;margin:0">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</label>
+          </div>
+
+          <button type="submit" class="btn-primary" id="submitBtn">Create account</button>
+        </form>
+
+        <p class="switch">Already have an account? <a href="#">Log in</a></p>
+      </div>
+
+      <div class="success" id="successView" role="status">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
+        <h2>Account created</h2>
+        <p id="successMsg">Check your inbox to confirm your email.</p>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  const form = document.getElementById('signupForm');
+  const pw = document.getElementById('password');
+  const bars = document.querySelectorAll('.meter i');
+  const meterText = document.getElementById('meterText');
+  const toggle = document.getElementById('toggle');
+  const terms = document.getElementById('terms');
+  const termsWrap = document.getElementById('termsWrap');
+
+  // Show / hide password
+  toggle.addEventListener('click', () => {
+    const show = pw.type === 'password';
+    pw.type = show ? 'text' : 'password';
+    toggle.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+
+  // Password strength
+  const colors = ['#d9534f', '#e8a33d', '#6bb36b', '#1a8a5a'];
+  const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+  pw.addEventListener('input', () => {
+    const v = pw.value;
+    let score = 0;
+    if (v.length >= 8) score++;
+    if (/[a-z]/.test(v) && /[A-Z]/.test(v)) score++;
+    if (/\d/.test(v)) score++;
+    if (/[^A-Za-z0-9]/.test(v) || v.length >= 14) score++;
+    bars.forEach((b, i) => b.style.background = (v && i < score) ? colors[score - 1] : '');
+    meterText.textContent = v ? labels[Math.max(score - 1, 0)] + ' password' : 'Use 8 or more characters with letters and numbers.';
+  });
+
+  // Validation helpers
+  const setInvalid = (input, bad) => input.closest('.field').classList.toggle('invalid', bad);
+  const rules = {
+    first: v => v.trim().length > 0,
+    last: v => v.trim().length > 0,
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+    password: v => v.length >= 8
+  };
+  Object.keys(rules).forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('blur', () => setInvalid(el, !rules[id](el.value)));
+    el.addEventListener('input', () => { if (el.closest('.field').classList.contains('invalid')) setInvalid(el, !rules[id](el.value)); });
+  });
+  terms.addEventListener('change', () => termsWrap.classList.toggle('invalid', !terms.checked));
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    let firstBad = null;
+    Object.keys(rules).forEach(id => {
+      const el = document.getElementById(id);
+      const bad = !rules[id](el.value);
+      setInvalid(el, bad);
+      if (bad) { ok = false; firstBad = firstBad || el; }
+    });
+    if (!terms.checked) { termsWrap.classList.add('invalid'); ok = false; firstBad = firstBad || terms; }
+    if (!ok) { firstBad.focus(); return; }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = 'Creating account…';
+    // Replace this timeout with your real request (fetch/axios) to your backend.
+    setTimeout(() => {
+      document.getElementById('successMsg').textContent = 'We sent a confirmation link to ' + document.getElementById('email').value.trim() + '.';
+      document.getElementById('formView').style.display = 'none';
+      document.getElementById('successView').classList.add('show');
+    }, 900);
+  });
+</script>
+</body>
+</html>
