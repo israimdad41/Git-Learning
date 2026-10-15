@@ -1,0 +1,624 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CropGen AI | Login</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #176653;
+    --dark-green: #0d302e;
+    --light-green: #a6d99a;
+    --text: #18332f;
+    --muted: #74858a;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    background: #f5f8f4;
+    color: var(--text);
+}
+
+.page {
+    display: grid;
+    grid-template-columns: 46% 54%;
+    min-height: 100vh;
+}
+
+/* LEFT HERO SECTION */
+.hero {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 55px 8%;
+    color: white;
+    background:
+        linear-gradient(180deg,
+        rgba(9, 43, 44, .88),
+        rgba(10, 48, 40, .32)),
+        url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=85")
+        center / cover no-repeat;
+}
+
+.brand {
+    font-size: 34px;
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+.brand span {
+    color: var(--light-green);
+}
+
+.tagline {
+    margin-top: 12px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #e2eee4;
+}
+
+.hero-content {
+    max-width: 460px;
+    margin: 60px 0;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(42px, 4.5vw, 66px);
+    line-height: 1.12;
+    font-weight: 500;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: var(--light-green);
+}
+
+.hero p {
+    color: #e5eeea;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 400px;
+}
+
+.features {
+    margin-top: 34px;
+    display: grid;
+    gap: 20px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 15px;
+}
+
+.feature-icon {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background: rgba(184, 229, 168, .2);
+    border: 1px solid rgba(255,255,255,.22);
+    color: #c7edb7;
+    font-size: 21px;
+}
+
+.hero-footer {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-style: italic;
+    color: #f0f5dc;
+}
+
+/* RIGHT LOGIN SECTION */
+.login-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 55px 8%;
+    position: relative;
+    background:
+        radial-gradient(circle at 90% 5%,
+        #e3efdf 0, transparent 25%),
+        #f8faf7;
+}
+
+.language {
+    position: absolute;
+    top: 28px;
+    right: 35px;
+    padding: 10px 15px;
+    border: 1px solid #dce5df;
+    border-radius: 25px;
+    background: white;
+    color: var(--text);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 45px 42px;
+    background: rgba(255,255,255,.92);
+    border: 1px solid #e5ebe6;
+    border-radius: 25px;
+    box-shadow: 0 20px 65px rgba(25, 61, 44, .09);
+    animation: appear .7s ease both;
+}
+
+.logo-icon {
+    width: 62px;
+    height: 62px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 16px;
+    border-radius: 20px;
+    background: #edf6e9;
+    color: var(--green);
+    font-size: 32px;
+}
+
+.login-card h2 {
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 35px;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    text-align: center;
+    margin: 12px 0 35px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 23px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #d8e1dc;
+    background: #fff;
+    border-radius: 12px;
+    padding: 0 15px;
+    transition: .25s ease;
+}
+
+.input-wrap:focus-within {
+    border-color: var(--green);
+    box-shadow: 0 0 0 4px rgba(23,102,83,.09);
+}
+
+.input-icon {
+    font-size: 18px;
+    color: #617a70;
+}
+
+input {
+    width: 100%;
+    height: 54px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--text);
+}
+
+input::placeholder {
+    color: #a0aaa8;
+}
+
+.show-password {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 17px;
+    color: #617a70;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    margin: 4px 0 26px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.remember input {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--green);
+}
+
+a {
+    color: var(--green);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.login-btn {
+    width: 100%;
+    height: 55px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(110deg, #176653, #237661);
+    color: white;
+    font-size: 16px;
+    font-weight: 650;
+    cursor: pointer;
+    box-shadow: 0 7px 18px rgba(23,102,83,.18);
+    transition: transform .2s, box-shadow .2s;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(23,102,83,.25);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 28px 0 22px;
+    color: #8a9892;
+    font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #e0e7e2;
+}
+
+.social-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.social-btn {
+    height: 48px;
+    border: 1px solid #dce5df;
+    background: white;
+    border-radius: 11px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.social-btn:hover {
+    background: #f1f7f0;
+    border-color: #a9c9b6;
+}
+
+.signup {
+    margin-top: 29px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.signup a {
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.security {
+    margin-top: 24px;
+    color: #7c8f84;
+    font-size: 12px;
+    text-align: center;
+}
+
+#message {
+    display: none;
+    margin-top: 15px;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+    color: var(--green);
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 850px) {
+    .page {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: 330px;
+        padding: 32px 7%;
+    }
+
+    .brand {
+        font-size: 28px;
+    }
+
+    .hero-content {
+        margin: 35px 0 15px;
+    }
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .features {
+        display: none;
+    }
+
+    .hero-footer {
+        display: none;
+    }
+
+    .login-section {
+        padding: 65px 20px 35px;
+    }
+
+    .login-card {
+        padding: 35px 25px;
+    }
+
+    .language {
+        top: 15px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .login-card {
+        padding: 30px 18px;
+    }
+
+    .login-card h2 {
+        font-size: 30px;
+    }
+
+    .social-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+    <section class="hero">
+        <div>
+            <div class="brand">🌿 CropGen <span>AI</span></div>
+            <div class="tagline">
+                SMARTER CHOICES | HEALTHIER CROPS | BRIGHTER FUTURE
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1>Better Farming<br>with <span>AI.</span></h1>
+
+            <p>
+                Get personalized crop recommendations, expert guidance
+                and data-driven insights for a more productive tomorrow.
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">❋</div>
+                    Smart Recommendations
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">⌖</div>
+                    Location Based Insights
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">↗</div>
+                    Higher Yield &amp; Profit
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-footer">
+            Grow More. Grow Smarter.
+        </div>
+    </section>
+
+    <section class="login-section">
+
+        <select class="language" aria-label="Select language">
+            <option value="en">🌐 English</option>
+            <option value="ur">اردو</option>
+            <option value="sd">سنڌي</option>
+        </select>
+
+        <div class="login-card">
+            <div class="logo-icon">🌱</div>
+
+            <h2>Welcome Back</h2>
+            <p class="subtitle">
+                Sign in to your CropGen AI account
+            </p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrap">
+                        <span class="input-icon">✉</span>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrap">
+                        <span class="input-icon">♙</span>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                            minlength="6"
+                        >
+                        <button
+                            class="show-password"
+                            type="button"
+                            id="togglePassword"
+                            aria-label="Show password"
+                        >◉</button>
+                    </div>
+                </div>
+
+                <div class="options">
+                    <label class="remember">
+                        <input type="checkbox" id="remember">
+                        Remember me
+                    </label>
+
+                    <a href="#" id="forgotLink">Forgot password?</a>
+                </div>
+
+                <button class="login-btn" type="submit">
+                    Login &nbsp; →
+                </button>
+
+                <p id="message" role="status"></p>
+            </form>
+
+            <div class="divider">Or continue with</div>
+
+            <div class="social-buttons">
+                <button class="social-btn" type="button"
+                    data-provider="Google">
+                    🌐 Google
+                </button>
+
+                <button class="social-btn" type="button"
+                    data-provider="Microsoft">
+                    🟦 Microsoft
+                </button>
+            </div>
+
+            <div class="signup">
+                Don't have an account?
+                <a href="#" id="signupLink">Sign Up</a>
+            </div>
+        </div>
+
+        <div class="security">♢ &nbsp; Your data matters to us</div>
+    </section>
+
+</main>
+
+<script>
+const form = document.getElementById("loginForm");
+const password = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+const message = document.getElementById("message");
+
+function showMessage(text) {
+    message.textContent = text;
+    message.style.display = "block";
+}
+
+togglePassword.addEventListener("click", () => {
+    const isHidden = password.type === "password";
+
+    password.type = isHidden ? "text" : "password";
+    togglePassword.setAttribute(
+        "aria-label",
+        isHidden ? "Hide password" : "Show password"
+    );
+});
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    showMessage(
+        "Design preview only. Connect a secure authentication backend to log in."
+    );
+});
+
+document.getElementById("forgotLink").addEventListener("click", (event) => {
+    event.preventDefault();
+    showMessage("Connect a password-reset service to recover your account.");
+});
+
+document.getElementById("signupLink").addEventListener("click", (event) => {
+    event.preventDefault();
+    showMessage("Connect your registration page to create an account.");
+});
+
+document.querySelectorAll("[data-provider]").forEach((button) => {
+    button.addEventListener("click", () => {
+        showMessage(
+            button.dataset.provider +
+            " sign-in requires an OAuth authentication setup."
+        );
+    });
+});
+</script>
+
+</body>
+</html>
